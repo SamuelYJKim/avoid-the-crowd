@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
-import { getPlaces } from "./getPlaces.js";
 
 export const Search = (props) => {
   const [searchText, setSearchText] = useState("");
@@ -20,6 +19,27 @@ export const Search = (props) => {
 
   getLocation();
 
+  const getPlaces = async (latitude, longitude, keyword) => {
+    const apiUrl = "http://localhost:5000/places/";
+    const paramsURL = latitude + "/" + longitude + "/" + keyword;
+    const requestUrl = apiUrl + paramsURL;
+    try {
+      fetch(requestUrl, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }).then((response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            props.handleSearch(data);
+          });
+        }
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   return (
     <form>
       <TextField
@@ -29,7 +49,8 @@ export const Search = (props) => {
       />
       <Button
         variant="contained"
-        color="primary"
+        color="secondary"
+        disableElevation
         onClick={() => getPlaces(latitude, longitude, searchText)}
       >
         search

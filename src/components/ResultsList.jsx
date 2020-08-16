@@ -1,24 +1,28 @@
 import React, { Component } from "react";
-import { Button, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import PlaceCard from "./PlaceCard.jsx";
+
 class ResultsList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      list: [],
-    };
-    for (let i = 0; i < 5; i++) {
-      this.state.list.push(<PlaceCard />);
-    }
   }
+
   render() {
-    // const elements = this.state.list.map((element) => (
-    //   <Button color="primary">element</Button>
-    // ));
+    let max;
+    if (this.props.locationData) {
+      max = this.props.locationData.length;
+    } else {
+      max = 0;
+    }
+
+    let places = [];
+    for (let i = 0; i < max; i++) {
+      places.push(<PlaceCard placeData={this.props.locationData[i]} />);
+    }
+
     return (
-      // <Button color="primary">Hello World</Button>
       <Box component="span" m={1}>
-        {this.state.list}
+        {places}
       </Box>
     );
   }

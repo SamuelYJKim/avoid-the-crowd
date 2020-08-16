@@ -1,15 +1,16 @@
 import requests
 import json
-import priv
-import pub
 import config
 import datetime
+
 from datetime import datetime
 
 
 forecasts = {}
 nameBusyness = {}
 sortedList = []
+
+# method to authenticate with BestTime API
 
 
 def authenticate():
@@ -21,6 +22,8 @@ def authenticate():
 
     print(response.text.encode('utf8'))
     return "Hello World"
+
+# with the name and address, returns a list providing the busyness data, busyness description, name and address
 
 
 def make_forecast(name, address):
@@ -74,6 +77,9 @@ def get_query_now(venue_id):
         current_busyness_txt = "nothing"
         current_busyness_value = -10
     return [current_busyness_value, current_busyness_txt]
+
+# using a list of tuples, goes through and gathers data either from either creating a new forecast
+# or querying data from a previously made forecast
 
 
 def get_busyness(places):

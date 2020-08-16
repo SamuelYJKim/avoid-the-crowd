@@ -1,7 +1,6 @@
-import config
-import gmap
 import requests
 import json
+import config
 
 from scripts import get_busyness
 
@@ -14,6 +13,7 @@ def places(latitude, longitude, keyword):
     request_url = api_url + params
     response = requests.get(request_url).json()
     places = []
+    print(response["results"])
     max_results = min(10, len(response["results"]))
     for i in range(max_results):
         name = response["results"][i]["name"]

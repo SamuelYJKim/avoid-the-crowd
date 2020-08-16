@@ -12,7 +12,7 @@ closests location in order of busyness from least to greatest. From there, the u
 
 ## Languages and Tools 
 
-Languages: JavaScript, Python, HTML, CSS
+Languages: JavaScript, Python, HTML, CSS<br/>
 Tools: Node.js, Flask, Google Maps API, BestTime API, React Library, Material UI
 
 ## Credits

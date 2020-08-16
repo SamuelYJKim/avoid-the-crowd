@@ -7,10 +7,16 @@ were unsatisfied with the current services that they provided.
 
 ## How to Use
 
-The user can type in a category name for the places of interest they are trying to find. Once they search, our app can return the 5 of the
-closests location in order of busyness from least to greatest. From there, the user can look through the selection and heart, share or minimize the card list 
+The user can type in a category name for the places of interest they are trying to find. Once they search, our app can return up to 10 of the
+closests location in order of busyness from least to greatest. From there, the user can look through posts that contains the name, address, photo and other information.  
+
+## Languages and Tools 
+
+Languages: JavaScript, Python, HTML, CSS
+Tools: Node.js, Flask, Google Maps API, BestTime API, React Library, Material UI
 
 ## Credits
+
 Created by Nitesh Chetry, Samuel Kim, Joon Kim, Ali Byott, and Brian Tran
 
 

@@ -44,13 +44,17 @@ export const Search = (props) => {
     <form>
       <TextField
         id="location-search"
-        label="Where to?"
+        placeholder="Where to?"
         onChange={(event) => setSearchText(event.target.value)}
+        size={"large"}
       />
       <Button
         variant="contained"
-        color="secondary"
-        onClick={() => getPlaces(latitude, longitude, searchText)}
+        color="primary"
+        onClick={() => {
+          props.switchSearchingStatus(true);
+          getPlaces(latitude, longitude, searchText);
+        }}
       >
         search
       </Button>

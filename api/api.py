@@ -12,7 +12,3 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route('/places/<latitude>/<longitude>/<keyword>')
 def get_places(latitude, longitude, keyword):
     return places(latitude, longitude, keyword)
-
-
-def get_authenticate():
-    return authenticate()

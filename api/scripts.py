@@ -20,7 +20,6 @@ def authenticate():
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    print(response.text.encode('utf8'))
     return "Hello World"
 
 # with the name and address, returns a list providing the busyness data, busyness description, name and address
@@ -91,10 +90,12 @@ def get_busyness(places):
             res = get_query_now(venue_id)
             res.append(tup[0])
             res.append(tup[1])
+            res.append(tup[2])
             places_list.append(res)
         else:
             # forecast => private key
             res = make_forecast(tup[0], tup[1])
+            res.append(tup[2])
             places_list.append(res)
 
     i = 0

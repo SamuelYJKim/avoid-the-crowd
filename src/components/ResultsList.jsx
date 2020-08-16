@@ -3,10 +3,6 @@ import { Box } from "@material-ui/core";
 import PlaceCard from "./PlaceCard.jsx";
 
 class ResultsList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let max;
     if (this.props.locationData) {

@@ -50,7 +50,6 @@ export const Search = (props) => {
       <Button
         variant="contained"
         color="secondary"
-        disableElevation
         onClick={() => getPlaces(latitude, longitude, searchText)}
       >
         search

@@ -20,9 +20,10 @@ export const Search = (props) => {
   getLocation();
 
   const getPlaces = async (latitude, longitude, keyword) => {
-    const apiUrl = "http://localhost:5000/places/";
+    const apiUrl = "https://avoid-the-crowd.wl.r.appspot.com/places/";
     const paramsURL = latitude + "/" + longitude + "/" + keyword;
-    const requestUrl = apiUrl + paramsURL;
+	const requestUrl = apiUrl + paramsURL;
+	console.log("requestUrl", requestUrl)
     try {
       fetch(requestUrl, {
         headers: {

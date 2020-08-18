@@ -27,7 +27,7 @@ gmap_api_key = "Fill" <br/>
 best_times_private_key = "Me" <br/>
 best_times_public_key = "In" <br/>
 
-## Running app Locally
+## Running the App Locally
 
 To turn on frontend, load a terminal session within the avoid-the-crowd folder and run npm start. Once that is done, navigate into the api folder and turn on virtual environment. After entering virtual environment, type in flask run to start web server. From there, the web app should start running on https://localhost:3000.
 

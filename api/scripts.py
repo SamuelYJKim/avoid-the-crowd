@@ -20,7 +20,7 @@ def authenticate():
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    return "Hello World"
+    return response
 
 # with the name and address, returns a list providing the busyness data, busyness description, name and address
 

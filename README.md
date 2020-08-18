@@ -1,16 +1,18 @@
 # Avoid the Crowd
 
-Avoid the Crowd is a full stack web app that can assist people to find places of interest that are least crowded.
-We wanted to create this app, especially during this pandemic, because we felt wanted the general public to safely find 
-places where they can pick up groceries, get food at restaurants, and much more. After looking through many services, we 
-were unsatisfied with the current services that they provided.
+Avoid the Crowd is a full stack web application that assists users in finding places of interest that are the least crowded. We wanted to create this app, especially during this pandemic, because we want the general public to find places where they can safely pick up groceries, get food at restaurants, and much more. After looking through many services, we were unsatisfied with the current functionality that they provide.
 
 ## How to Use
 
-The user can type in a category name for the places of interest they are trying to find. Once they search, our app can return the 5 of the
-closests location in order of busyness from least to greatest. From there, the user can look through the selection and heart, share or minimize the card list 
+The user can type in a place of interest they want to find. Once they search, our app returns up to 10 of the closest locations in order of busyness from least to greatest. From there, the user can look through the listings, each of which contains the name, address, a photo, and how busy the location is.
+
+## Languages and Tools 
+
+Languages: JavaScript, Python, HTML, CSS<br/>
+Tools: Node.js, Flask, Google Maps API, BestTime API, React Library, Material UI
 
 ## Credits
+
 Created by Nitesh Chetry, Samuel Kim, Joon Kim, Ali Byott, and Brian Tran
 
 

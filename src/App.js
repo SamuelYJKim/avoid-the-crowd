@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import ResultsList from "./components/ResultsList";
-import Search from "./components/Search";
+import SearchBar from "./components/SearchBar";
 import { Box, CircularProgress, Typography } from "@material-ui/core";
+
 class App extends Component {
   state = {
     isSearching: false,
@@ -25,8 +26,7 @@ class App extends Component {
       <div className="App">
         <Typography variant="h1">Avoid The Crowd! 🏃</Typography>
         <br />
-        <Search
-          className="searchbar"
+        <SearchBar
           handleSearch={this.handleSearch}
           switchSearchingStatus={this.switchSearchingStatus}
         />
@@ -38,7 +38,7 @@ class App extends Component {
             <br />
             <br />
             <br />
-            <CircularProgress m={2} size={200} />
+            <CircularProgress size={200} />
           </>
         ) : (
           <Box width={1 / 2} mx="auto">

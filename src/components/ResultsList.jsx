@@ -4,21 +4,13 @@ import PlaceCard from "./PlaceCard.jsx";
 
 class ResultsList extends Component {
   render() {
-    let max;
-    if (this.props.locationData) {
-      max = this.props.locationData.length;
-    } else {
-      max = 0;
-    }
-
-    let places = [];
-    for (let i = 0; i < max; i++) {
-      places.push(<PlaceCard placeData={this.props.locationData[i]} />);
-    }
+    const placeCards = this.props.locationData?.map((placeData) => {
+      return <PlaceCard placeData={placeData} />;
+    });
 
     return (
       <Box component="span" m={1}>
-        {places}
+        {placeCards}
       </Box>
     );
   }

@@ -2,10 +2,12 @@ import requests
 import json
 import config
 import concurrent.futures
-
+from functools import lru_cache
 from scripts import get_busyness
 
 # gets one photo of the location
+
+
 def get_photo(location):
     photo_reference = location[4]
     if len(photo_reference) == 0:
@@ -17,6 +19,8 @@ def get_photo(location):
     return str(response.url)
 
 # get all requests concurrently
+
+
 def get_all_photos(res):
     with concurrent.futures.ThreadPoolExecutor(10) as executor:
         intermediateResults = executor.map(get_photo, res)
@@ -27,6 +31,8 @@ def get_all_photos(res):
         return finalResults
 
 # after getting reference from photo location, make a new search to find more photos of the location
+
+
 def get_photo_references(place_id):
     api_url = "https://maps.googleapis.com/maps/api/place/details/json?fields=photo"
     params_url = "&place_id=" + place_id + "&key=" + config.gmap_api_key
@@ -39,10 +45,12 @@ def get_photo_references(place_id):
 
 # to handle multiple requests
 def get_all_photo_references(place_ids):
-     with concurrent.futures.ThreadPoolExecutor(10) as executor:
+    with concurrent.futures.ThreadPoolExecutor(10) as executor:
         results = executor.map(get_photo_references, place_ids)
         return list(results)
 
+
+@lru_cache(maxsize=128, typed=False)
 def places(latitude, longitude, keyword):
     api_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     location = latitude + "," + longitude

@@ -36,8 +36,8 @@ export const SearchBar = (props) => {
     !latitude || !latitude || latitude === 0 || longitude === 0;
 
   const getPlaces = async (latitude, longitude, keyword) => {
-    const apiUrl = "https://avoid-the-crowd.wl.r.appspot.com/places/";
-    // const apiUrl = "http://localhost:5000/places/";
+    //const apiUrl = "https://avoid-the-crowd.wl.r.appspot.com/places/";
+    const apiUrl = "http://localhost:5000/places/";
     const paramsURL = latitude + "/" + longitude + "/" + keyword;
     const requestUrl = apiUrl + paramsURL;
     try {

@@ -131,7 +131,7 @@ def collect_info(info):
 
 def get_busyness(places):
     places_list = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         ret = []
         for tup in places:
             ret.append(executor.submit(collect_info, info=tup))

@@ -1,11 +1,13 @@
 import requests
 import json
 import config
+import concurrent.futures
 
 from scripts import get_busyness
 
 
-def get_photo(photo_reference):
+def get_photo(location):
+    photo_reference = location[4]
     api_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&"
     params_url = "photoreference=" + photo_reference + "&key=" + config.gmap_api_key
     request_url = api_url + params_url
@@ -14,11 +16,14 @@ def get_photo(photo_reference):
 
 
 def get_photos(res):
-    print(res)
-    for i in range(len(res)):
-        if res[i][4] != "":
-            res[i][4] = get_photo(res[i][4])
-    return res
+    with concurrent.futures.ThreadPoolExecutor(10) as executor:
+        intermediateResults = executor.map(get_photo, res)
+        finalResults = []
+        for i in range(res):
+            element = res[i][:4]
+            element.append(intermediateResults[i])
+            finalResults.append(element)
+        return finalResults
 
 
 def places(latitude, longitude, keyword):

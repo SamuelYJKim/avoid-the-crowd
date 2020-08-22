@@ -37,7 +37,6 @@ def places(latitude, longitude, keyword):
         if "photos" in response["results"][i] and len(response["results"][i]["photos"]) > 0:
             photo_reference = response["results"][i]["photos"][0]["photo_reference"]
         places.append((name, address, photo_reference))
-
     res = get_busyness(places)
     photo_res = get_photos(res)
     return json.dumps(photo_res)

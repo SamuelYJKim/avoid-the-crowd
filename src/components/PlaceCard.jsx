@@ -1,22 +1,40 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import { ButtonBase, Paper, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-class PlaceCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: this.props.placeData[2],
-      address: this.props.placeData[3],
-      busy: this.props.placeData[1],
-      photoUrl: this.props.placeData[4],
-    };
-  }
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: "auto",
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
+  },
+  lowVersion: {
+    background: "green",
+  },
+}));
 
-  determineColor = () => {
-    let status = this.state.busy;
+export const PlaceCard = ({ placeData }) => {
+  const classes = useStyles();
+  const [name] = useState(placeData[2]);
+  const [address] = useState(placeData[3]);
+  const [busy] = useState(placeData[1]);
+  const [photoUrl] = useState(placeData[4]);
+
+  function determineColor(status) {
     if (status === "Closed") {
       return "closedVersion";
     } else if (status === "Low") {
@@ -30,39 +48,43 @@ class PlaceCard extends Component {
     } else {
       return "highVersion";
     }
-  };
-
-  render() {
-    console.log("photoUrl", this.state.photoUrl);
-    let str;
-    if (this.state.busy === "Closed") {
-      str = "";
-    } else {
-      str = "How Busy? ";
-    }
-    str += this.state.busy;
-    return (
-      <Card variant="outlined">
-        <CardContent>
-          <Typography variant="h3" component="h2">
-            {this.state.name}
-          </Typography>
-          <Typography variant="h5" color="textSecondary">
-            {this.state.address}
-          </Typography>
-          <br></br>
-          <Typography
-            className={this.determineColor}
-            variant="h4"
-            component="h2"
-          >
-            {str}
-          </Typography>
-        </CardContent>
-        <img src={this.state.photoUrl}></img>
-      </Card>
-    );
   }
-}
+
+  let str;
+  if (busy === "Closed") {
+    str = "";
+  } else {
+    str = "How Busy? ";
+  }
+  str += busy;
+  const altText = "image for location " + name;
+  console.log("determineColor", determineColor(busy));
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img className={classes.img} alt={altText} src={photoUrl} />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="h5">
+                  {name}
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {address}
+                </Typography>
+                <Typography variant="body2">{str}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </div>
+  );
+};
 
 export default PlaceCard;

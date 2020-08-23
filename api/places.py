@@ -2,6 +2,7 @@ import requests
 import json
 import config
 import concurrent.futures
+import time
 from functools import lru_cache
 from scripts import get_busyness
 
@@ -52,6 +53,7 @@ def get_all_photo_references(place_ids):
 
 @lru_cache(maxsize=128, typed=False)
 def places(latitude, longitude, keyword):
+    start = time.time()
     api_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     location = latitude + "," + longitude
     params = "?location=" + location + "&keyword=" + \
@@ -72,4 +74,6 @@ def places(latitude, longitude, keyword):
         places.append((name, address, photo_references[i]))
     res = get_busyness(places)
     photo_res = get_all_photos(res)
+    roundtrip = time.time() - start
+    print(roundtrip)
     return json.dumps(photo_res)
